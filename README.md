@@ -1,1 +1,4 @@
-# ServerDevelopmentLaborUnion
+# 서버개발 노동조합
+곧 생길 전공동아리 깃
+
+와 센즈
