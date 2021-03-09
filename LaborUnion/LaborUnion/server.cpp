@@ -1,5 +1,6 @@
 #include <WS2tcpip.h>
 #include <stdio.h>
+#include <conio.h>
 
 #pragma comment(lib, "ws2_32")
 
@@ -20,7 +21,7 @@ int main()
 		serverData.sin_family		= AF_INET;
 	}
 	INT			clientDataSize		= sizeof(clientData);
-	CHAR		chMsg[PACKET_SIZE] = "Connected.\r\nServer will shut down in 5 secs.";
+	CHAR		chMsg[PACKET_SIZE] = "와 서노 아시는구나\r\n";
 #pragma endregion
 
 
@@ -35,10 +36,14 @@ int main()
 	closesocket(sListening);
 
 	send(sClient, chMsg, PACKET_SIZE, 0);
-	Sleep(5000);
+
+	recv(sClient, chMsg, PACKET_SIZE, 0);
+	printf("%s\r\n", chMsg);
+
 
 	closesocket(sClient);
-	
 	WSACleanup();
+	_getch();
+
 	return(0);
 }
