@@ -11,10 +11,13 @@
 ## 언어
 * C/C++
 * 어쩌면 C#<br>
-*예시 코드*<br>
+
+## 예시 코드
+* 서버
 ```cpp
 #include <WS2tcpip.h>
 #include <stdio.h>
+#include <conio.h>
 
 #pragma comment(lib, "ws2_32")
 
@@ -35,7 +38,7 @@ int main()
 		serverData.sin_family		= AF_INET;
 	}
 	INT			clientDataSize		= sizeof(clientData);
-	CHAR		chMsg[PACKET_SIZE] = "Connected.\r\nServer will shut down in 5 secs.";
+	CHAR		chMsg[PACKET_SIZE] = "와 서노 아시는구나\r\n";
 #pragma endregion
 
 
@@ -43,26 +46,89 @@ int main()
 
 	sListening = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
-	bind(sListening, (SOCKADDR*)&serverData, sizeof(serverData));
+	bind(sListening,  (SOCKADDR*)&serverData, sizeof(serverData));
 	listen(sListening, SOMAXCONN);
 	
 	sClient = accept(sListening, (SOCKADDR*)&clientData, &clientDataSize);
 	closesocket(sListening);
 
 	send(sClient, chMsg, PACKET_SIZE, 0);
-	Sleep(5000);
+
+	recv(sClient, chMsg, PACKET_SIZE, 0);
+	printf("%s\r\n", chMsg);
+
 
 	closesocket(sClient);
-	
 	WSACleanup();
+	_getch();
+
 	return(0);
 }
 ```
-매우 간단한 서버에요.<br>
-클라이언트가 접속하면 메세지를 보내고 5초 후에 알아서 꺼지는 서버입니다.<br>
+* 클라이언트
+```cpp
+#include <WS2tcpip.h>
+#include <stdio.h>
+#include <conio.h>
+#pragma comment(lib, "ws2_32")
+
+#define PORT 5678
+#define PACKET_SIZE 1024
+
+int main()
+{
+#pragma region 변수들
+	WSADATA wsaData;
+	SOCKET sClient;
+	SOCKADDR_IN clientData;
+	{
+		InetPton(AF_INET, TEXT("127.0.0.1"), &clientData.sin_addr.s_addr);
+		clientData.sin_port = htons(PORT);
+		clientData.sin_family = AF_INET;
+	}
+	CHAR chMsg[PACKET_SIZE];
+#pragma endregion
+
+	WSAStartup(MAKEWORD(2, 2), &wsaData);
+
+	sClient = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	connect(sClient, (SOCKADDR*)&clientData, sizeof(clientData));
+
+	recv(sClient, chMsg, PACKET_SIZE, 0);
+	printf("%s", chMsg);
+	
+	strcpy_s(chMsg, PACKET_SIZE, "와 서버개발 노동조합 아시는구나\r\n");
+	send(sClient, chMsg, PACKET_SIZE, 0);
+
+
+	closesocket(sClient);
+	WSACleanup();
+	_getch();
+
+	return(0);
+}
+```
+
+매우 간단한 서버와 클라이언트에요.<br>
+클라이언트가 접속하면 서버에서 메세지를 보내고, 클라이언트도 서버에 메세지를 보내요.
 대충 이러한 코드들 + a 를 가지고 공부하는 동아리에요.<br>
 
 ## 난이도
 * 매우 어려워요.
 * 아주 어려워요.
 * 많이 어려워요.
+* 진짜 어려워요.<br>
+
+## 뭐 배워요?
+저 위에 있는 강의 링크에 있는것들 배워요.<br>
+글구 된다면 다른 동아리 침략해서 서버를 심어주고 옵시다.<br><br>
+
+## 서버개발 노동조합 팀원
+* 팀장 한우엽
+* 권혁준
+* 김경혁
+* 김형주
+* 명재문
+* 손환주
+* 유원석<br><br>
+* *Groovy*
