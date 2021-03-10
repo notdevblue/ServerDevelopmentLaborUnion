@@ -60,35 +60,46 @@ int main()
 
 	bind(sListening, (SOCKADDR*)&serverData, sizeof(serverData));
 	listen(sListening, SOMAXCONN);
-
 	sClient = accept(sListening, (SOCKADDR*)&clientData, &clientDataSize);
 	closesocket(sListening);
-
-#pragma region 직렬화
-	// 이쪽은 아직 공부중이라 정확하지 않을 수 있음.
-	packet.message = "이것은 데이터 직렬화이다아아\r\n";
-	packet.senderID = Server;
-	boost::archive::text_oarchive oa(ss);
-	oa << packet;
-	send(sClient, ss.str().c_str(), PACKET_SIZE, 0);
-
-	ss.clear();
-
-	recv(sClient, chMsg, PACKET_SIZE, 0);
-	ss << chMsg;
-	boost::archive::text_iarchive ia(ss);
-	ia >> packet;
-
-	std::cout << packet.message;
-	if (packet.senderID == Server)
-		std::cout << "서버에서 보낸 메세지" << std::endl;
-	else if (packet.senderID == Client)
-		std::cout << "클라이언트에서 보낸 메세지" << std::endl;
+	inet_ntop(AF_INET, &clientData.sin_addr, chMsg, PACKET_SIZE);
+	std::cout << "클라이언트 접속함" << std::endl;
+	std::cout << "클라이언트 IP:" << chMsg << std::endl;
 	
+#pragma region 직렬화
+
+	while (true)
+	{
+		// 이쪽은 아직 공부중이라 정확하지 않을 수 있음.
+		recv(sClient, chMsg, PACKET_SIZE, 0);
+		boost::archive::text_oarchive oa(ss);
+		oa << chMsg;
+		std::cout << ss.str() << std::endl;
+		boost::archive::text_iarchive ia(ss);
+		ia >> packet;
+		if (packet.message == "abort")
+			break;
+
+		if (packet.senderID == Server)
+			std::cout << "서버에서 보낸 메세지: ";
+		else if (packet.senderID == Client)
+			std::cout << "클라이언트에서 보낸 메세지: ";
+		std::cout << packet.message << std::endl;
+
+		packet.senderID = Client;
+		packet.message = chMsg;
+
+		
+		oa << chMsg;
+		send(sClient, ss.str().c_str(), PACKET_SIZE, 0);
+	}
+
 #pragma endregion
 
 	closesocket(sClient);
 	WSACleanup();
+	//system("cls");
+	std::cout << "종료하려면 아무 키나 누르세요..." << std::endl;
 	_getch();
 
 	return(0);
