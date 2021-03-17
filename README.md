@@ -1,4 +1,6 @@
 # 서버개발 노동조합
+![동아리 포스터](https://cdn.discordapp.com/attachments/788559063759192091/821577897335848960/final.jpg)<br>
+<br>
 ![동아리 로고](https://cdn.discordapp.com/attachments/788559063759192091/818415291146305546/sirnosirno.png)<br>
 곧 생길 전공동아리 깃<br>
 이 동아리가 합격해서 쭉 이어 갈수도 있으니 열심히 리드미를 작성합니다.
