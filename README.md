@@ -10,6 +10,7 @@
 * [Soen.kr C 문법 강의](http://www.soen.kr/lecture/ccpp/cpp1/cpp1.htm)<br><br>
 아레 강의를 듣기 전에 이 강의를 들으면 이해가 조금 더 잘 갈 거에요.<br>
 
+* [유니티 멀티플레이 서버 강의](https://www.youtube.com/watch?v=dQw4w9WgXcQ)<br>
 
 * [동신대학교 소프트웨어 커뮤니티 유튜브 강의](https://www.youtube.com/playlist?list=PLrrTotxaO6kgEMm9YYRX-jwHAHhqSt8Ke)<br><br>
 우앱이가 공부하고 있는 강의 플레이리스트에요.<br>
