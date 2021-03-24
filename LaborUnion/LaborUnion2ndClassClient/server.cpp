@@ -3,6 +3,13 @@
 #include <conio.h>
 #pragma comment(lib, "ws2_32")
 
+DWORD WINAPI ThreadProc(LPVOID proc);
+
+SOCKET sClient;
+char chRecvMsg[1024];
+bool isDisconnected = false;
+
+
 int main()
 {
 	WSADATA wsaData;
@@ -16,36 +23,47 @@ int main()
 		serverAddr.sin_addr.s_addr = INADDR_ANY;
 	}
 
-	SOCKET sClient;
+	
 	SOCKADDR_IN clientAddr;
 	int clientAddrSize = sizeof(clientAddr);
-	char chMsg[1024] = "와센즈";
-
+	char chSendMsg[1024];
+	
+	HANDLE hThread;
 
 	WSAStartup(MAKEWORD(2, 2), &wsaData);
 
 	sListening = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	bind(sListening, (SOCKADDR*)&serverAddr, sizeof(serverAddr));
 
+	std::cout << "연결 기다리는 중." << std::endl;
 	listen(sListening, SOMAXCONN);
 
 	sClient = accept(sListening, (SOCKADDR*)&clientAddr, &clientAddrSize);
 	closesocket(sListening);
+	std::cout << "연결 성공." << std::endl;
 
-	while (recv(sClient, chMsg, 1024, 0) != -1)
+	hThread = CreateThread(NULL, 0, ThreadProc, NULL, 0, NULL);
+
+	while (!isDisconnected)
 	{
-		std::cout << "클라이언트: " << chMsg << std::endl;
-		std::cin.getline(chMsg, 1024);
-
-		send(sClient, chMsg, 1024, 0);
+		std::cin.getline(chSendMsg, 1024);
+		send(sClient, chSendMsg, 1024, 0);
 	}
-
-	
 
 	_getch();
 
 	closesocket(sClient);
 	WSACleanup();
-
+	CloseHandle(hThread);
 	return(0);
+}
+
+DWORD WINAPI ThreadProc(LPVOID proc)
+{
+	while (!isDisconnected)
+	{
+		isDisconnected = recv(sClient, chRecvMsg, 1024, 0) == -1;
+		std::cout << "클라이언트: " << chRecvMsg << std::endl;
+	}
+	return 0;
 }
