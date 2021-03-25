@@ -60,10 +60,10 @@ int main()
 
 DWORD WINAPI ThreadProc(LPVOID proc)
 {
-	while (!isDisconnected)
-	{
-		isDisconnected = recv(sClient, chRecvMsg, 1024, 0) == -1;
+	while (recv(sClient, chRecvMsg, 1024, 0) != -1)
+	{	
 		std::cout << "클라이언트: " << chRecvMsg << std::endl;
 	}
+	isDisconnected = true;
 	return 0;
 }
