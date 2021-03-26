@@ -78,7 +78,22 @@ int main()
 		}
 	}
 
-	WaitForMultipleObjects(roomSize, hThread, true, INFINITE);
+	//BROADCAST
+	char text[1024];
+	while (true)
+	{
+		if (scanf_s("%s", text, 1024) > 0)
+		{
+			for (int i = 0; i < roomSize; i++)
+			{
+				if (clientConnect)
+				{
+					send(sClient[i], text, 1024, 0);
+				}
+			}
+		}
+	}
+
 	delete[] hThread;
 
 	WSACleanup();
@@ -126,6 +141,7 @@ DWORD WINAPI ConnectionThread(LPVOID lpParam)
 		if (g_msgQueue[index].size() != 0)
 		{
 			send(sClient[index], g_msgQueue[index].front(), 1024, 0);
+			printf("\n");
 			g_msgQueue[index].pop();
 		}
 		LeaveCriticalSection(&crit);
@@ -145,7 +161,7 @@ DWORD WINAPI RecvThread(LPVOID lpParam)
 	InitializeCriticalSection(&crit);
 	while (recv(sClient[index], chMsg, 1024, 0) != -1)
 	{
-		printf("%s\r\n", chMsg);
+		printf("»ç¿ëÀÚ %d: %s\r\n", index, chMsg);
 		EnterCriticalSection(&crit);
 		g_msgQueue[index].push(chMsg);
 		LeaveCriticalSection(&crit);
