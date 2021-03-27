@@ -9,6 +9,7 @@
 
 #ifdef ONE2N // 서버를 통한 1ㄷN 통신 구현
 
+DWORD WINAPI BroadCastThread(LPVOID lpParam);
 DWORD WINAPI ConnectionThread(LPVOID lpParam);
 DWORD WINAPI RecvThread(LPVOID lpParam);
 
@@ -57,6 +58,8 @@ int main()
 	clientConnect = new bool[roomSize] { false };
 	clientNum = new UINT[roomSize];
 
+	HANDLE hBroadCast = CreateThread(NULL, 0, BroadCastThread, &roomSize, 0, NULL);
+
 	for (UINT i = 0; i < roomSize; ++i)
 	{
 		if (i == 0)
@@ -78,6 +81,23 @@ int main()
 		}
 	}
 
+	WaitForMultipleObjects(roomSize, hThread, true, INFINITE);
+
+	delete[] hThread;
+
+	WSACleanup();
+	return(0);
+}
+
+// 나중을 위한 주석
+// while(true)로 무한루프 걸고
+// 그 안에 socket, bind, listen, accept 까지 한 다음 CreateThread
+// 그리고 다시 처음으로 돌아감
+// while 문 처음에 변수선언하면 컴퓨터가 가능한 안에서 무한으로 접속 가능
+
+DWORD WINAPI BroadCastThread(LPVOID lpParam)
+{
+	int roomSize = *(int*)lpParam;
 	//BROADCAST
 	char text[1024];
 	while (true)
@@ -93,18 +113,7 @@ int main()
 			}
 		}
 	}
-
-	delete[] hThread;
-
-	WSACleanup();
-	return(0);
 }
-
-// 나중을 위한 주석
-// while(true)로 무한루프 걸고
-// 그 안에 socket, bind, listen, accept 까지 한 다음 CreateThread
-// 그리고 다시 처음으로 돌아감
-// while 문 처음에 변수선언하면 컴퓨터가 가능한 안에서 무한으로 접속 가능
 
 DWORD WINAPI ConnectionThread(LPVOID lpParam)
 {
@@ -118,7 +127,7 @@ DWORD WINAPI ConnectionThread(LPVOID lpParam)
 	serverAddr[index]; // 보기 편하게 하기 위함
 	{
 		serverAddr[index].sin_addr.s_addr = INADDR_ANY;
-		serverAddr[index].sin_port = htons(5678);
+		serverAddr[index].sin_port = htons(56789);
 		serverAddr[index].sin_family = AF_INET;
 	}
 	sListening[index] = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
