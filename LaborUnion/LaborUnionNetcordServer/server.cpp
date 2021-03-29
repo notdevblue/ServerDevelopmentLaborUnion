@@ -1,13 +1,32 @@
+#include <iostream>
+
+#define NOTUSING
+#define ONE2N
+
+#ifdef NOTUSING
+#ifdef ONE2N
+#undef ONE2N
+#endif
+
+int main()
+{
+	std::cout << "사용하지 않는 파일입니다." << std::endl;
+
+	return(0);
+}
+
+#endif
+
+
+
+
+#ifdef ONE2N // 서버를 통한 1ㄷN 통신 구현
+
 #include <WS2tcpip.h>
 #include <stdio.h>
-#include <iostream>
-#include <vector>
 #include <queue>
 #pragma comment(lib, "ws2_32")
 
-#define ONE2N
-
-#ifdef ONE2N // 서버를 통한 1ㄷN 통신 구현
 
 DWORD WINAPI ConnectionThread(LPVOID lpParam);
 DWORD WINAPI RecvThread(LPVOID lpParam);

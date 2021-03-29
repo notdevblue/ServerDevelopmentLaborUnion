@@ -16,13 +16,13 @@ DWORD WINAPI RecvThread(LPVOID lpParam);
 std::queue<LPSTR>* g_msgQueue;
 
 
-SOCKET* sListening;
-SOCKET* sClient;
-SOCKADDR_IN* serverAddr;
-SOCKADDR_IN* clientAddr;
-INT* clientAddrSize;
-bool* clientConnect;
-UINT* clientNum;
+SOCKET*			sListening;
+SOCKET*			sClient;
+SOCKADDR_IN*	serverAddr;
+SOCKADDR_IN*	clientAddr;
+INT*			clientAddrSize;
+bool*			clientConnect;
+UINT*			clientNum;
 
 int main()
 {
@@ -45,20 +45,20 @@ int main()
 	printf("%d 명이 접속할 수 있는 체팅 서버를 만듭니다\r\n", roomSize);
 #pragma endregion
 
-	HANDLE* hThread = new HANDLE[roomSize];
+	HANDLE* hThread		= new HANDLE[roomSize];
 
-	g_msgQueue = new std::queue<LPSTR>[roomSize];
+	g_msgQueue			= new std::queue<LPSTR>[roomSize];
 
-	sListening = new SOCKET[roomSize];
-	sClient = new SOCKET[roomSize];
-	serverAddr = new SOCKADDR_IN[roomSize];
-	clientAddr = new SOCKADDR_IN[roomSize];
-	clientAddrSize = new INT[roomSize];
+	sListening			= new SOCKET[roomSize];
+	sClient				= new SOCKET[roomSize];
+	serverAddr			= new SOCKADDR_IN[roomSize];
+	clientAddr			= new SOCKADDR_IN[roomSize];
+	clientAddrSize		= new INT[roomSize];
 
-	clientConnect = new bool[roomSize] { false };
-	clientNum = new UINT[roomSize];
+	clientConnect		= new bool[roomSize] { false };
+	clientNum			= new UINT[roomSize];
 
-	HANDLE hBroadCast = CreateThread(NULL, 0, BroadCastThread, &roomSize, 0, NULL);
+	HANDLE hBroadCast	= CreateThread(NULL, 0, BroadCastThread, &roomSize, 0, NULL);
 
 	for (UINT i = 0; i < roomSize; ++i)
 	{
