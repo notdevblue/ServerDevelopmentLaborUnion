@@ -4,6 +4,9 @@
 
 #pragma comment(lib, "ws2_32")
 
+#define PACKET_SIZE 1024
+
+
 class CEasyServer
 {
 private:
@@ -19,7 +22,11 @@ private:
 	INT				clientNumber;
 #pragma endregion
 
-	
+#pragma region Thread
+	HANDLE*			hThread;
+
+#pragma endregion
+
 public:
 	CEasyServer();
 	~CEasyServer();
@@ -27,8 +34,11 @@ public:
 	/// <summary>
 	/// while(true) 로 돌리면 접속이 있을 때 마다 쓰레드를 만듭니다.
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>에러가 있을 시 -1, 정상종료 시 0</returns>
 	INT acceptClient();
 
+
+	
 };
 
+DWORD WINAPI recvThread(LPVOID lpParam);
