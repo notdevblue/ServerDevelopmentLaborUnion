@@ -19,26 +19,10 @@ int main()
 	SOCKADDR_IN clientAddr;
 	{
 		clientAddr.sin_family = AF_INET;
-		clientAddr.sin_port = htons(5678);
-		InetPton(AF_INET, TEXT("127.0.0.1"), &clientAddr.sin_addr);
+		clientAddr.sin_port = htons(56789);
+		InetPton(AF_INET, TEXT("222.98.247.233"), &clientAddr.sin_addr);
 	}
-	HANDLE hThread;
 	
-	//CHAR chNickname[32];
-
-	//while (true)
-	//{
-	//	std::cout << "닉네임을 입력하세요 (최대 32글자): ";
-	//	std::cin >> chNickname;
-	//	if (chNickname[31] != '\0')
-	//	{
-	//		std::cout << "잘못된 닉네임입니다." << std::endl;
-	//	}
-	//	else
-	//		break;
-	//}
-	//system("cls");
-
 	WSAStartup(MAKEWORD(2, 2), &wsaData);
 	sClient = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	
@@ -47,7 +31,7 @@ int main()
 	std::cout << "연결 성공." << std::endl;
 
 
-	hThread = CreateThread(NULL, 0, ThreadProc, NULL, 0, NULL);
+	CreateThread(NULL, 0, ThreadProc, NULL, 0, NULL);
 
 	while (!isDisconnected)
 	{	
@@ -55,14 +39,10 @@ int main()
 		send(sClient, chSendMsg, 1024, 0);
 	}
 
-	
-	
-
 	_getch();
 
 	closesocket(sClient);
 	WSACleanup();
-	CloseHandle(hThread);
 	return(0);
 }
 
@@ -71,7 +51,7 @@ DWORD WINAPI ThreadProc(LPVOID proc)
 {
 	while (recv(sClient, chRecvMsg, 1024, 0) != -1)
 	{
-		std::cout << "누군가: " << chRecvMsg << std::endl;
+		printf("누군가: %s\r\n", chRecvMsg);
 	}
 	isDisconnected = true;
 	return 0;

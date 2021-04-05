@@ -106,7 +106,7 @@ DWORD WINAPI BroadCastThread(LPVOID lpParam)
 		{
 			for (int i = 0; i < roomSize; i++)
 			{
-				if (clientConnect)
+				if (clientConnect[i])
 				{
 					send(sClient[i], text, 1024, 0);
 				}
@@ -170,8 +170,8 @@ DWORD WINAPI RecvThread(LPVOID lpParam)
 	InitializeCriticalSection(&crit);
 	while (recv(sClient[index], chMsg, 1024, 0) != -1)
 	{
-		printf("사용자 %d: %s\r\n", index, chMsg);
 		EnterCriticalSection(&crit);
+		printf("사용자 %d: %s\r\n", index, chMsg);
 		g_msgQueue[index].push(chMsg);
 		LeaveCriticalSection(&crit);
 	}
