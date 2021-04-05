@@ -15,7 +15,7 @@ CEasyServer::CEasyServer()
 		serverAddr.sin_family		= AF_INET;
 	}
 
-	clientNumber == 1;
+	clientNumber = 1;
 
 	sClient = (SOCKET*)malloc(sizeof(SOCKET) * clientNumber);
 #pragma region sClient 배열 검사
@@ -25,24 +25,29 @@ CEasyServer::CEasyServer()
 	}
 #pragma endregion
 
-	hThread = (HANDLE*)malloc(sizeof(HANDLE) * clientNumber);
+	hRecvThread = (HANDLE*)malloc(sizeof(HANDLE) * clientNumber);
 #pragma region sClient 배열 검사
-	if (hThread == NULL)
+	if (hRecvThread == NULL)
 	{
 		fprintf(stderr, "Error at CEasyServer.cpp Line: %d, cannot malloc", __LINE__);
 	}
 #pragma endregion
+
+
+	hSendThread = CreateThread(NULL, 0, senderThreadStart, (LPVOID)this, 0, NULL);
 }
 
 CEasyServer::~CEasyServer()
 {
 	free(sClient);
-	free(hThread);
+	free(hRecvThread);
 	WSACleanup();
 }
 #pragma endregion
 
-INT CEasyServer::acceptClient()
+#pragma region 기능 함수
+
+INT _Must_inspect_result_ _Check_return_ CEasyServer::acceptClient()
 {
 	SOCKET sListening = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 #pragma region sListening 값 검사
@@ -74,14 +79,14 @@ INT CEasyServer::acceptClient()
 #pragma endregion
 	
 	// Thread
-	HANDLE* sTempThreadArr = (HANDLE*)realloc(hThread, sizeof(HANDLE) * clientNumber);
+	HANDLE* sTempThreadArr = (HANDLE*)realloc(hRecvThread, sizeof(HANDLE) * clientNumber);
 #pragma region sTempThreadArr 배열 검사
 	if (sTempThreadArr == NULL)
 	{
 		fprintf(stderr, "Error at CEasyServer.cpp, Line: %d, cannot realloc", __LINE__); return(-1);
 	}
 #pragma endregion
-	hThread = sTempThreadArr;
+	hRecvThread = sTempThreadArr;
 
 #pragma region sTempThreadArr 배열 삭제
 	free(sTempThreadArr);
@@ -99,19 +104,52 @@ INT CEasyServer::acceptClient()
 	closesocket(sListening);
 
 
-	hThread[clientNumber - 1] = CreateThread(NULL, 0, recvThread, (sClient + clientNumber - 1), 0, NULL);
+	//hRecvThread[clientNumber - 1] = CreateThread(NULL, 0, recvThreadStart, (sClient + clientNumber - 1), 0, NULL);
+	hRecvThread[clientNumber - 1] = CreateThread(NULL, 0, recvThreadStart, (LPVOID)this, 0, NULL);
 
 	++clientNumber;
 	return(0);
 }
 
-DWORD WINAPI recvThread(LPVOID lpParam)
+INT _Must_inspect_result_ _Check_return_ CEasyServer::waitSenderThread()
 {
+	return WaitForSingleObject(hSendThread, INFINITE);
+}
+#pragma endregion
+
+#pragma region Thread
+
+DWORD CEasyServer::recvThread(LPVOID lpParam)
+{
+	CRITICAL_SECTION crit;
 	SOCKET sClient = *(SOCKET*)lpParam;
 	CHAR chBuffer[PACKET_SIZE];
 
+
 	while (recv(sClient, chBuffer, PACKET_SIZE, 0))
 	{
+		CRAIICriticalSession raiiCritcal(crit);
+		m_msgQueue.push(chBuffer);
+	}
 
+	closesocket(sClient);
+}
+
+DWORD CEasyServer::msgSenderThread()
+{
+	CRITICAL_SECTION crit;
+
+	while (true)
+	{
+		CRAIICriticalSession raiiCritical(crit);
+		if (!m_msgQueue.empty())
+		{
+			for (int i = 0; i < clientNumber; ++i)
+			{
+				send(sClient[i], m_msgQueue.front(), PACKET_SIZE, 0);
+			}
+			m_msgQueue.pop();
+		}
 	}
 }
+#pragma endregion
