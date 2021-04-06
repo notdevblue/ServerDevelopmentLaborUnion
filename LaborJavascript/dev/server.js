@@ -13,10 +13,12 @@ app.get("/chat", (req, res) => {
 io.on("connection", socket => {
     console.log(socket.id);
     socket.on("chat", data => {
-        io.emit("chat-all", {sender:socket.id, msg:data.msg});
+        io.emit("chat-all", { sender: socket.id, msg: data.msg });
     });
 });
 
 server.listen(8080, () => {
     console.log("서버 실행중");
 });
+
+// 깃bash로 node server.js 해야함

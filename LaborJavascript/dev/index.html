@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,25 +8,31 @@
     <title>Document</title>
     <script src="/socket.io/socket.io.js"></script>
 </head>
+
 <body>
     <h1>채팅</h1>
     <input type="text" id="chatMsg">
     <button id="btnSend">전송</button>
+    <textarea name="textwindow" id="textwindow" cols="30" rows="10"></textarea>
 
     <script>
         const socket = new io();
 
         const chatMsg = document.querySelector("#chatMsg");
-        document.querySelector("#btnSend").addEventListener("click", e =>{
+        document.querySelector("#btnSend").addEventListener("click", e => {
             let msg = chatMsg.value;
-            socket.emit("chat", {msg});
+            socket.emit("chat", {
+                msg
+            });
 
 
         });
 
         socket.on("chat-all", data => {
-            console.log(data);
+            let textarea = document.querySelector("#textwindow");
+            textarea.value = data.msg;
         });
     </script>
 </body>
+
 </html>
