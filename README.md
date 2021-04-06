@@ -1,6 +1,6 @@
 # 서버개발 노동조합
 ## 끝없는 공부 동아리에 오신걸 환영합니다
-## __공부와 상관 없는거 푸쉬하지 마세요__
+### __공부와 상관 없는거 푸쉬하지 마세요__
 ![동아리 포스터](https://cdn.discordapp.com/attachments/788559063759192091/821577897335848960/final.jpg)<br>
 <br>
 ![동아리 로고](https://cdn.discordapp.com/attachments/788559063759192091/818415291146305546/sirnosirno.png)<br>
