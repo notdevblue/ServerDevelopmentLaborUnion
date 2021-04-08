@@ -1,6 +1,6 @@
 # 서버개발 노동조합
 ## 끝없는 공부 동아리에 오신걸 환영합니다
-## __공부와 상관 없는거 푸쉬하지 마세요__
+### __공부와 상관 없는거 푸쉬하지 마세요__
 ![동아리 포스터](https://cdn.discordapp.com/attachments/788559063759192091/821577897335848960/final.jpg)<br>
 <br>
 ![동아리 로고](https://cdn.discordapp.com/attachments/788559063759192091/818415291146305546/sirnosirno.png)<br>
@@ -8,18 +8,24 @@
 이 동아리가 합격해서 쭉 이어 갈수도 있으니 열심히 리드미를 작성합니다.
 
 ## 좀 당황스럽습니다. 뭘 해야 하나요.
-* [Soen.kr C 문법 강의](http://www.soen.kr/lecture/ccpp/cpp1/cpp1.htm)<br><br>
+* [Soen.kr C 문법 강의](http://www.soen.kr/lecture/ccpp/cpp1/cpp1.htm)<br>
 아레 강의를 듣기 전에 이 강의를 들으면 이해가 조금 더 잘 갈 거에요.<br>
 
 * [유니티 멀티플레이 서버 강의](https://www.youtube.com/watch?v=dQw4w9WgXcQ)<br>
 
-* [동신대학교 소프트웨어 커뮤니티 유튜브 강의](https://www.youtube.com/playlist?list=PLrrTotxaO6kgEMm9YYRX-jwHAHhqSt8Ke)<br><br>
+* [동신대학교 소프트웨어 커뮤니티 유튜브 강의](https://www.youtube.com/playlist?list=PLrrTotxaO6kgEMm9YYRX-jwHAHhqSt8Ke)<br>
 우앱이가 공부하고 있는 강의 플레이리스트에요.<br>
-*일단은 이거와 비슷하게 공부할것*
+*일단은 이거와 비슷하게 공부할것*<br>
+
+* [socket.io](https://socket.io/)<br>
+* [socket.io 강의 문서](https://www.zerocho.com/category/NodeJS/post/57edfcf481d46f0015d3f0cd)<br>
+
 
 ## 언어
 * C/C++
-* 어쩌면 C#<br>
+* 어쩌면 C#<br><br>
+
+* 만 하려고 했는데 웹소켓도 다루고 있습니다.
 
 ## 예시 코드
 * 서버
