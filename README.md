@@ -1,13 +1,20 @@
-# 서버개발 노동조합
-## 끝없는 공부 동아리에 오신걸 환영합니다
-### __공부와 상관 없는거 푸쉬하지 마세요__
+# 서버개발 노동조합 / Server Development Labor Union
+### 끝없는 공부 동아리에 오신걸 환영합니다. / Welcome to endless studying club
+## 여기 뭐하는 동아리에요?? / wtf is this git m8
+그저 서버 프로그래머가 되고 싶은 겜마고 학생들이 모인 동아리에요.<br>
+다른 동아리 서버를 만들거나 자급자족 합니다.<br>
+서버개발 노동조합은 겜마고 유일 서버개발 동아리입니다.<br><br>
+
+This is some GGM-Nerds grouped to become server programmer.<br>
+We make other club's server, or make multiplayer game alone.<br>
+Server Development Labor Union is the Only server programming club in Gyeonggi Game Meister High School.<br><br>
+
+#### __공부와 상관 없는거 푸쉬하지 마세요__
 ![동아리 포스터](https://cdn.discordapp.com/attachments/788559063759192091/821577897335848960/final.jpg)<br>
 <br>
 ![동아리 로고](https://cdn.discordapp.com/attachments/788559063759192091/818415291146305546/sirnosirno.png)<br>
-곧 생길 전공동아리 깃<br>
-이 동아리가 합격해서 쭉 이어 갈수도 있으니 열심히 리드미를 작성합니다.
 
-## 좀 당황스럽습니다. 뭘 해야 하나요.
+## 좀 당황스럽습니다. 뭘 해야 하나요. / Links
 * [Soen.kr C 문법 강의](http://www.soen.kr/lecture/ccpp/cpp1/cpp1.htm)<br>
 아레 강의를 듣기 전에 이 강의를 들으면 이해가 조금 더 잘 갈 거에요.<br>
 
@@ -21,125 +28,28 @@
 * [socket.io 강의 문서](https://www.zerocho.com/category/NodeJS/post/57edfcf481d46f0015d3f0cd)<br>
 
 
-## 언어
+## 언어 / Language
+### 서버 / Server
 * C/C++
-* 어쩌면 C#<br><br>
+* Javascript (Node.js)
 
-* 만 하려고 했는데 웹소켓도 다루고 있습니다.
+### 클라이언트 / Cient
+* C# (유니티/ Unity)
+* C++ (언리얼 / Unreal)
 
-## 예시 코드
-* 서버
-```cpp
-#include <WS2tcpip.h>
-#include <stdio.h>
-#include <conio.h>
+### 도구 / Tools
+* websocket
+* socket.io
+* winsockapi
 
-#pragma comment(lib, "ws2_32")
+## 뭐 배워요? / What do we learn?
+저 위에 있는 강의 링크에 있는것들 배워요. / goto Links;<br>
+서버를 만들고 돌려요. / Make server and run. Done.<br> 
+서버에 여러 사람이 접속할 수 있게 해요. / Make possible to connect multiple client in one server.<br>
+이 모든건 C/C++, C#, Javascript(Node.js) 로 해요. / We make these possible with C/C++, C#, Javascript(Node.js)
 
-#define PORT 5678
-#define PACKET_SIZE 1024
-
-int main()
-{
-#pragma region 변수들
-	WSADATA		wsaData;
-	SOCKET		sListening;
-	SOCKET		sClient;
-	SOCKADDR_IN clientData;
-	SOCKADDR_IN serverData;
-	{
-		serverData.sin_addr.s_addr	= htonl(INADDR_ANY);
-		serverData.sin_port			= htons(PORT);
-		serverData.sin_family		= AF_INET;
-	}
-	INT			clientDataSize		= sizeof(clientData);
-	CHAR		chMsg[PACKET_SIZE] = "와 서노 아시는구나\r\n";
-#pragma endregion
-
-
-	WSAStartup(MAKEWORD(2, 2), &wsaData);
-
-	sListening = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-
-	bind(sListening,  (SOCKADDR*)&serverData, sizeof(serverData));
-	listen(sListening, SOMAXCONN);
-	
-	sClient = accept(sListening, (SOCKADDR*)&clientData, &clientDataSize);
-	closesocket(sListening);
-
-	send(sClient, chMsg, PACKET_SIZE, 0);
-
-	recv(sClient, chMsg, PACKET_SIZE, 0);
-	printf("%s\r\n", chMsg);
-
-
-	closesocket(sClient);
-	WSACleanup();
-	_getch();
-
-	return(0);
-}
-```
-* 클라이언트
-```cpp
-#include <WS2tcpip.h>
-#include <stdio.h>
-#include <conio.h>
-#pragma comment(lib, "ws2_32")
-
-#define PORT 5678
-#define PACKET_SIZE 1024
-
-int main()
-{
-#pragma region 변수들
-	WSADATA wsaData;
-	SOCKET sClient;
-	SOCKADDR_IN clientData;
-	{
-		InetPton(AF_INET, TEXT("127.0.0.1"), &clientData.sin_addr.s_addr);
-		clientData.sin_port = htons(PORT);
-		clientData.sin_family = AF_INET;
-	}
-	CHAR chMsg[PACKET_SIZE];
-#pragma endregion
-
-	WSAStartup(MAKEWORD(2, 2), &wsaData);
-
-	sClient = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-	connect(sClient, (SOCKADDR*)&clientData, sizeof(clientData));
-
-	recv(sClient, chMsg, PACKET_SIZE, 0);
-	printf("%s", chMsg);
-	
-	strcpy_s(chMsg, PACKET_SIZE, "와 서버개발 노동조합 아시는구나\r\n");
-	send(sClient, chMsg, PACKET_SIZE, 0);
-
-
-	closesocket(sClient);
-	WSACleanup();
-	_getch();
-
-	return(0);
-}
-```
-
-매우 간단한 서버와 클라이언트에요.<br>
-클라이언트가 접속하면 서버에서 메세지를 보내고, 클라이언트도 서버에 메세지를 보내요.
-대충 이러한 코드들 + a 를 가지고 공부하는 동아리에요.<br>
-
-## 난이도
-* 매우 어려워요.
-* 아주 어려워요.
-* 많이 어려워요.
-* 진짜 어려워요.
-* 지옥 어서와요.<br>
-
-## 뭐 배워요?
-저 위에 있는 강의 링크에 있는것들 배워요.<br>
-글구 된다면 다른 동아리 침략해서 서버를 심어주고 옵시다.<br><br>
-
-## 서버개발 노동조합 팀원
+## 서버개발 노동조합 팀원 (임시) / Member of Server Development Labor Union (temp)
+이 멤버는 5월 말에 조정될 예정입니다. / These members will be adjusted in late May.<br>
 * 팀장 한우엽
 * 권혁준
 * 김민준
@@ -155,4 +65,4 @@ int main()
 * 이성현
 * 임태훈
 * 천승현<br><br>
-* *Groovy*
+* *Groovy* ~~I love ya discord~~
