@@ -31,13 +31,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LaborUnion331Server", "Labo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LaborUnion331Client", "LaborUnion331Client\LaborUnion331Client.vcxproj", "{E5B9B39D-FCF1-434B-B4F5-4F8053299745}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpLaborUnionSocketio", "LaborUnionCsharpSocketIO\CSharpLaborUnionSocketio.csproj", "{15A6D070-907D-4202-BEB9-394B30874E09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpLaborUnionSocketio", "LaborUnionCsharpSocketIO\CSharpLaborUnionSocketio.csproj", "{15A6D070-907D-4202-BEB9-394B30874E09}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpLaborUnionWinsock", "LaborUnionCSharpWSA\CSharpLaborUnionWinsock.csproj", "{89DA6794-5D6E-44FF-8AB6-B8D2004E0F94}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CSharpLaborUnionCPPServer", "CSharpLaborUnionCPPServer\CSharpLaborUnionCPPServer.vcxproj", "{66B9674E-08B7-428D-A8D1-C34157F27550}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LaborUnionCLR", "LaborUnionCLR\LaborUnionCLR.vcxproj", "{140A27C1-F5E3-407E-A09E-E9E19A899EBE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LaborUnionCServer", "LaborUnionCServer\LaborUnionCServer.vcxproj", "{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -233,6 +235,16 @@ Global
 		{140A27C1-F5E3-407E-A09E-E9E19A899EBE}.Release|x64.Build.0 = Release|x64
 		{140A27C1-F5E3-407E-A09E-E9E19A899EBE}.Release|x86.ActiveCfg = Release|Win32
 		{140A27C1-F5E3-407E-A09E-E9E19A899EBE}.Release|x86.Build.0 = Release|Win32
+		{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}.Debug|x64.ActiveCfg = Debug|x64
+		{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}.Debug|x64.Build.0 = Debug|x64
+		{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}.Debug|x86.ActiveCfg = Debug|Win32
+		{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}.Debug|x86.Build.0 = Debug|Win32
+		{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}.Release|Any CPU.ActiveCfg = Release|Win32
+		{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}.Release|x64.ActiveCfg = Release|x64
+		{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}.Release|x64.Build.0 = Release|x64
+		{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}.Release|x86.ActiveCfg = Release|Win32
+		{D5A5337A-90DB-49B5-8C2B-F1B6F1E37B81}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
