@@ -1,4 +1,4 @@
-const WebSocket = require('ws')
+const WebSocket = require('ws');
 const port = 32000;
 const wsService = new WebSocket.Server({ port }, () => {
     console.log("웹소켓 서버 스타트");
@@ -30,3 +30,26 @@ wsService.on("connection", socket => {
 wsService.on('listening', () => {
     console.log(`server listen on ${port}`);
 });
+
+
+
+
+/* 우앱 주석
+
+wsService = new WebSocket.Server(포트);
+하면 서버가 열리는 듯 함
+
+on 은 socket.io 와 같은 역할을 하는 듯
+send 는 emit 과 같은 역할을 하는 듯
+
+wsService.clients 는 아마도 리스트 비슷한 것이 아닐까
+clients 를 위한 forEach 도 있네 머야 이거
+
+socket 은 클라 하나
+
+
+궁금한것:
+wsService.send(); 이 함수가 있는데 io.emit(); 과 비슷한지
+getPayload(); 로 메세지를 나누는 듯 함
+
+*/
