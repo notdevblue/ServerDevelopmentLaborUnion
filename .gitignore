@@ -348,3 +348,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/LaborUnity/websocket/Library
+/LaborUnity/websocket/Temp/UnityTempFile-0260f51626665c343be6999622b8da8a
+/LaborUnity/websocket/Temp

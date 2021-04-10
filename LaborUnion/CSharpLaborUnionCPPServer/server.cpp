@@ -1,7 +1,7 @@
 #include <WS2tcpip.h>
 #include <stdio.h>
 #include <conio.h>
-
+#include <string>
 #pragma comment(lib, "ws2_32")
 
 int main()
@@ -17,7 +17,7 @@ int main()
 	}
 	SOCKADDR_IN clientAddr;
 	INT clientSize = sizeof(clientAddr);
-
+	INT posX = 0;
 	CHAR buffer[1024];
 
 	WSAStartup(MAKEWORD(2, 2), &wsaData);
@@ -30,11 +30,18 @@ int main()
 	closesocket(sListening);
 	
 	recv(sClient, buffer, 1024, 0);
-	printf("%s\r\n", buffer);
+	sscanf_s(buffer, "%d", &posX);
+	
+	
 
-	while (scanf_s("%s", buffer, 1024))
+
+
+	while (true)
 	{
-		send(sClient, buffer, 1024, 0);
+		strcpy_s(buffer, 1024, std::to_string(posX).c_str());
+
+		send(sClient, buffer, 1024, 0);	
+
 	}
 	
 	
