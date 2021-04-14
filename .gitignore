@@ -353,3 +353,6 @@ MigrationBackup/
 /LaborUnity/websocket/Temp
 /LaborUnity/ServerTransform/LaborUnionServerTransform/Temp
 /LaborUnity/ServerTransform/LaborUnionServerTransform/Library
+
+package-lock.json
+node_modules
