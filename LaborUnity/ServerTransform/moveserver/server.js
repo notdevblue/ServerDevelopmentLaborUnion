@@ -8,4 +8,4 @@ var msg = "Hello";
 
 ws.on("connection", socket => {
     socket.send("hellomsg", msg);
-})
+});
