@@ -1,18 +1,14 @@
-# 서버개발 노동조합 / Server Development Labor Union
-### 끝없는 공부 동아리에 오신걸 환영합니다. / Welcome to endless studying club
+# 서버개발 노동조합 / Server Development Labor Union<br>
 ## 여기 뭐하는 동아리에요?? / wtf is this git m8
 그저 서버 프로그래머가 되고 싶은 겜마고 학생들이 모인 동아리에요.<br>
 다른 동아리 서버를 만들거나 자급자족 합니다.<br>
-서버개발 노동조합은 겜마고 유일 서버개발 동아리입니다.<br><br>
+서버개발 노동조합은 겜마고의 유일한 최초 서버개발 동아리입니다. *~~유사품에 주의하세요~~*<br><br>
 
 This is some GGM-Nerds grouped to become server programmer.<br>
 We make other club's server, or make multiplayer game alone.<br>
-Server Development Labor Union is the Only server programming club in Gyeonggi Game Meister High School.<br><br>
+Server Development Labor Union is the first and only server programming club in Gyeonggi Game Meister High School.<br><br>
 
-#### __공부와 상관 없는거 푸쉬하지 마세요__
 ![동아리 포스터](https://cdn.discordapp.com/attachments/788559063759192091/821577897335848960/final.jpg)<br>
-<br>
-![동아리 로고](https://cdn.discordapp.com/attachments/788559063759192091/818415291146305546/sirnosirno.png)<br>
 
 ## 좀 당황스럽습니다. 뭘 해야 하나요. / Links
 * [Soen.kr C 문법 강의](http://www.soen.kr/lecture/ccpp/cpp1/cpp1.htm)<br>
@@ -34,8 +30,9 @@ Server Development Labor Union is the Only server programming club in Gyeonggi G
 * Javascript (Node.js)
 
 ### 클라이언트 / Cient
-* C# (유니티/ Unity)
-* C++ (언리얼 / Unreal)
+* C# (유니티 / Unity)
+* C++ (언리얼, WINAPI, 콘솔창 / Unreal, WINAPI, Windows console)
+* HTML ~~is not a programming language~~ (웹 / Web)
 
 ### 도구 / Tools
 * websocket
@@ -66,3 +63,6 @@ Server Development Labor Union is the Only server programming club in Gyeonggi G
 * 임태훈
 * 천승현<br><br>
 * *Groovy* ~~I love ya discord~~
+
+<br><br><br><br>
+*다음에 뽑을땐 면접 잘 해야 겠다...*
