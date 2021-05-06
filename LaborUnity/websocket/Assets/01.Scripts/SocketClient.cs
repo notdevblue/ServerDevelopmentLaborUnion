@@ -5,7 +5,7 @@ public class SocketClient : MonoBehaviour
 {
     public static SocketClient instance;
 
-    public string url = "ws://localhost";
+    public string url = "172.31.0.224:56789";
     public int port = 32000;
     public string user = "Gondr";
     private WebSocket webSocket;
