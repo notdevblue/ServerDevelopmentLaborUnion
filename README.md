@@ -45,6 +45,15 @@ Server Development Labor Union is the first and only server programming club in 
 서버에 여러 사람이 접속할 수 있게 해요. / Make possible to connect multiple client in one server.<br>
 이 모든건 C/C++, C#, Javascript(Node.js) 로 해요. / We make these possible with C/C++, C#, Javascript(Node.js)
 
+## 폴더 구조 / Folder explained here
+* LaborClass/LaborStudy               = 동아리 공부 코드 / Club class codes
+* LaborConsoleGame                    = 콘솔 게임 / Console Games
+* LaborExperimental/LaborExperimental = 실험 코드 / Experimental codes
+* LaborJavaScript                     = WebSocket
+* LaborUnion                          = 예제 코드 / Sample Codes
+* LaborUnity                          = 유니티 프로젝트 / Unity projects
+* \_LaborOutputs                      = 동아리 산출물 / Club outputs
+
 ## 서버개발 노동조합 팀원 (임시) / Member of Server Development Labor Union (temp)
 이 멤버는 5월 말에 조정될 예정입니다. / These members will be adjusted in late May.<br>
 * 팀장 한우엽
