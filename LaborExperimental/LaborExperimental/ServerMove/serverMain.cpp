@@ -5,8 +5,8 @@
 
 CHAR chMsg[1];
 
-int g_posX = 0;
-int g_posY = 0;
+short g_posX = 0;
+short g_posY = 0;
 
 void move(char input);
 
