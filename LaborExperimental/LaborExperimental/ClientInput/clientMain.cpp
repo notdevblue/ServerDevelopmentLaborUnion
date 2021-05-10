@@ -21,12 +21,17 @@ int main()
 	clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	
 	connect(clientSocket, (SOCKADDR*)&clientData, sizeof(clientData));
-
-	while (tolower(input[0] = _getch()) == 'q')
+	printf("connected.\r\n");
+	printf("q 를 눌러 나가세요: ");
+	while ((input[0] = tolower(input[0] = _getch())) != 'q')
 	{
 		send(clientSocket, input, 1, 0);
 	}
 
+
+	closesocket(clientSocket);
+
+	WSACleanup();
 	
 	return(0);
 }
