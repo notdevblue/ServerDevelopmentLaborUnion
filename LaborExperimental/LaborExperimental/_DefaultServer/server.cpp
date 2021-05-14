@@ -28,7 +28,7 @@ int main()
 	SOCKET sClient = accept(sListening, (SOCKADDR*)&clientData, &clientDataSize);
 	closesocket(sListening);
 	printf("클라이언트 접속함.\r\n");
-	CHAR buffer[1024];
+	CHAR buffer[1024] = "와 서버개발 노동조합 아시는구나!";
 	INT bufferSize = 1024;
 	INT leftBufferSize = bufferSize;
 	INT lBuffer = 0;

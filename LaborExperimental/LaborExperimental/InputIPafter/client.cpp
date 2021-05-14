@@ -54,7 +54,7 @@ int main()
 	while (leftBufferSize > 0)
 	{
 		lBuffer = recv(sClient, &buffer[index], leftBufferSize, 0);
-		printf("%s", &buffer[index]);
+		printf("%s\r\n", &buffer[index]);
 		leftBufferSize -= lBuffer;
 		index += lBuffer;
 	}
