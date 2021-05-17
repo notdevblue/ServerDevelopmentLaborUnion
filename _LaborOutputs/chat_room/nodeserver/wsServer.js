@@ -1,7 +1,7 @@
 const WebSocket = require('ws');
 const Vector3 = require('./Vector3');
 const Vector2 = require('./Vector2');
-const port = 32000;
+const port = 56789;
 
 let socketIdx = 0;
 let connectedSocket = {};
@@ -49,7 +49,9 @@ wsService.on("connection", socket => {
     socket.on("close", () => {
         console.log(`${socket.id} 접속 해제`);
         delete connectedSocket[socket.id];
-        delete userList[socket.id];
+        if(socket.state === State.IN_GAME){
+            delete userList[socket.id];
+        }
     });
 
     socket.on("message", msg => {
@@ -61,33 +63,79 @@ wsService.on("connection", socket => {
         if (data.type === "Transform") {
             TransformHandler(data, socket);
         }
+        if(data.type === "OnDamage"){
+            OnDamageHandler(data, socket);
+        }
+        if(data.type === "Shoot"){
+            ShootHandler(data, socket);
+        }
+        if(data.type === "LevelUp"){
+            LevelHandler(socket);
+        }
     });
 });
 
 function TransformHandler(data, socket) {
     let payload = JSON.parse(data.payload);
-
+    let user = userList[payload.socketId + ""];
+    
+    user.point = payload.point;
+    user.rotation = payload.rotation;
 }
 
 function LoginHandler(data, socket) {
-    //const { color, name } = data;
-    let x = Math.floor(Math.random() * 12 - 6);
-    let y = Math.floor(Math.random() * 12 - 6);
+    const { name } = data;
+    const maxMap = 154;
+
+    let x = Math.floor(Math.random() * maxMap - (maxMap/2));
+    let y = Math.floor(Math.random() * maxMap - (maxMap/2));
     let position = new Vector2(x, y);
+
     socket.state = State.IN_GAME;
 
     let sendData = JSON.stringify({
         type: "Login",
-        payload: JSON.stringify({ position, rotation: Vector3.zero, socketId: socket.id })
+        payload: JSON.stringify({ name, position, rotation: Vector3.zero, socketId: socket.id })
     });
 
     userList[socket.id] = {
+        name,
         position,
         rotation: Vector3.zero,
         socketId: socket.id,
-        tank
     };
     socket.send(sendData);
+}
+
+function OnDamageHandler(data, socket) { // data에 데미지랑 맞는 socket을 가져옴
+    let payload = JSON.parse(data.payload);
+
+    wsService.clients.forEach(s => {
+        s.send(JSON.stringify({ type: "OnDamage", payload: JSON.stringify({ damage:payload.damage, socketId:socket.id }) }));
+    });
+}
+
+function ShootHandler(data, socket) {
+    let payload = JSON.parse(data.payload);
+    myRotation = payload.rotation; // 받아온 방향
+
+    let sendData = JSON.stringify({
+        type: "Shoot",
+        payload: JSON.stringify({shootRotation:myRotation, socketId:socket.id})
+    });
+
+    //모든 소켓에 데이터 갱신해줌.
+    wsService.clients.forEach(s => {
+        if(s !== socket.id){ // 자신이 아닌 모든 사람들에게 총을 발사하는 소켓과 방향을 보냄
+            s.send(sendData);
+        }
+    });
+}
+
+function LevelHandler(socket){
+    wsService.clients.forEach(s => {
+        s.send(JSON.stringify({ type: "LevelUp", payload: JSON.stringify({ socketId:socket.id }) }));
+    });
 }
 
 wsService.on('listening', () => {
