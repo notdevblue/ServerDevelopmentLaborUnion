@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 351217797}
   m_Layer: 0
   m_Name: Stick
-  m_TagString: Untagged
+  m_TagString: PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,6 +267,7 @@ MonoBehaviour:
   expObjPrefab: {fileID: 3527668054746290429, guid: dce9fc26a987cf3448ef445e291191f2, type: 3}
   xPos: 0
   yPos: 0
+  max: 10
 --- !u!4 &509709652
 Transform:
   m_ObjectHideFlags: 0
@@ -731,6 +732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2071324660}
   pi: {fileID: 2071324661}
+  playerLevelup: {fileID: 2071324662}
 --- !u!4 &908239168
 Transform:
   m_ObjectHideFlags: 0
@@ -940,7 +942,7 @@ GameObject:
   - component: {fileID: 2071324667}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
