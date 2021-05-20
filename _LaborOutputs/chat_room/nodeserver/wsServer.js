@@ -69,9 +69,6 @@ wsService.on("connection", socket => {
         if(data.type === "Shoot"){
             ShootHandler(data, socket);
         }
-        if(data.type === "LevelUp"){
-            LevelHandler(socket);
-        }
     });
 });
 
@@ -129,12 +126,6 @@ function ShootHandler(data, socket) {
         if(s !== socket.id){ // 자신이 아닌 모든 사람들에게 총을 발사하는 소켓과 방향을 보냄
             s.send(sendData);
         }
-    });
-}
-
-function LevelHandler(socket){
-    wsService.clients.forEach(s => {
-        s.send(JSON.stringify({ type: "LevelUp", payload: JSON.stringify({ socketId:socket.id }) }));
     });
 }
 
