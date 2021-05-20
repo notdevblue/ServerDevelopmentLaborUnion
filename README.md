@@ -54,24 +54,15 @@ Server Development Labor Union is the first and only server programming club in 
 * LaborUnity                          = 유니티 프로젝트 / Unity projects
 * \_LaborOutputs                      = 동아리 산출물 / Club outputs
 
-## 서버개발 노동조합 팀원 (임시) / Member of Server Development Labor Union (temp)
-이 멤버는 5월 말에 조정될 예정입니다. / These members will be adjusted in late May.<br>
+## 서버개발 노동조합 팀원 / Member of Server Development Labor Union<br>
 * 팀장 한우엽
-* 권혁준
 * 김민준
 * 김경혁
-* 김형주
 * 명재문
 * 박상빈
-* 손성빈
 * 손환주
-* 우수안
 * 유원석
-* 유진우
 * 이성현
 * 임태훈
 * 천승현<br><br>
 * *Groovy* ~~I love ya discord~~
-
-<br><br><br><br>
-*다음에 뽑을땐 면접 잘 해야 겠다...*
