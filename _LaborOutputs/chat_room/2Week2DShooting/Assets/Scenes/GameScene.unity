@@ -232,7 +232,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &509709650
@@ -264,10 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c672ddcdc08b62a4aa9199431a52bc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expObjPrefab: {fileID: 3527668054746290429, guid: 0e2b7d8bc8c890c4ba177ec7bb8ec6c3, type: 3}
-  xPos: 0
-  yPos: 0
-  max: 10
 --- !u!4 &509709652
 Transform:
   m_ObjectHideFlags: 0
@@ -534,7 +530,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &755778588
@@ -616,7 +612,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &878569708
@@ -698,7 +694,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &908239166
@@ -730,9 +726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d195bdf3a43414d97afa98baffd83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2071324660}
-  pi: {fileID: 2071324661}
-  playerLevelup: {fileID: 2071324668}
 --- !u!4 &908239168
 Transform:
   m_ObjectHideFlags: 0
@@ -922,7 +915,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2071324660
@@ -941,6 +934,7 @@ GameObject:
   - component: {fileID: 2071324662}
   - component: {fileID: 2071324667}
   - component: {fileID: 2071324668}
+  - component: {fileID: 2071324669}
   m_Layer: 0
   m_Name: Player
   m_TagString: PLAYER
@@ -972,8 +966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d70272eab88dd43afc578a7adf448c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testObj: {fileID: 340739272}
-  speed: 5
 --- !u!50 &2071324663
 Rigidbody2D:
   serializedVersion: 4
@@ -1059,7 +1051,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2071324666
@@ -1101,4 +1093,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb137a4abd1887b41a02e932bdda6c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expData: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+--- !u!114 &2071324669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071324660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ffae54d0de8b2c47b5fe2605f980b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  coolTime: 1
+  hp: 10
+  time: 0
+  poolTransform: {fileID: 509709652}
+  bullets: []
+  bulletCount: 0
+  bulletPrefab: {fileID: 1702860451641736841, guid: ed2de6094e8a60c449e30b56b5c9058f, type: 3}
