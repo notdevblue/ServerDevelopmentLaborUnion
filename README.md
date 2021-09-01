@@ -59,13 +59,10 @@ Server Development Labor Union is the first and only server programming club in 
 
 ## 서버개발 노동조합 팀원 / Member of Server Development Labor Union<br>
 * 팀장 한우엽
-* 김민준
-* 김경혁
-* 명재문
 * 박상빈
-* 손환주
 * 유원석
 * 이성현
 * 임태훈
-* 천승현<br><br>
+* 천승현
+* 한종서<br><br>
 * *Groovy* ~~I love ya discord~~
