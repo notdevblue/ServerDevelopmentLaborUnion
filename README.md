@@ -8,7 +8,7 @@ This is some GGM-Nerds grouped to become server programmer.<br>
 We make other club's server, or make multiplayer game alone.<br>
 Server Development Labor Union is the first and only server programming club in Gyeonggi Game Meister High School.<br><br>
 
-![동아리 포스터](https://cdn.discordapp.com/attachments/788559063759192091/821577897335848960/final.jpg)<br>
+![동아리 포스터](http://ggm.gondr.net/image/circles/7/background/Comp%2032_00000.png)<br>
 
 ## 좀 당황스럽습니다. 뭘 해야 하나요. / Links
 * [Soen.kr C 문법 강의](http://www.soen.kr/lecture/ccpp/cpp1/cpp1.htm)<br>
