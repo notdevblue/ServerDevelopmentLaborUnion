@@ -15,6 +15,7 @@ Server Development Labor Union is the first and only server programming club in 
 아레 강의를 듣기 전에 이 강의를 들으면 이해가 조금 더 잘 갈 거에요.<br>
 
 * [유니티 멀티플레이 서버 강의](https://www.youtube.com/watch?v=dQw4w9WgXcQ)<br>
+* [웹소켓 강의](https://wiki.gentoo.org/wiki/Handbook:AMD64/Full/Installation/ko)<br>
 
 * [동신대학교 소프트웨어 커뮤니티 유튜브 강의](https://www.youtube.com/playlist?list=PLrrTotxaO6kgEMm9YYRX-jwHAHhqSt8Ke)<br>
 우앱이가 공부하고 있는 강의 플레이리스트에요.<br>
