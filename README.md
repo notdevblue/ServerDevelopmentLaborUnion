@@ -1,5 +1,5 @@
 # 서버개발 노동조합 / Server Development Labor Union<br>
-## 여기 뭐하는 동아리에요?? / wtf is this git m8
+## 여기 뭐하는 동아리에요?? / wtf is this repo m8
 그저 서버 프로그래머가 되고 싶은 겜마고 학생들이 모인 동아리에요.<br>
 다른 동아리 서버를 만들거나 자급자족 합니다.<br>
 서버개발 노동조합은 겜마고의 유일한 최초 서버개발 동아리입니다. *~~유사품에 주의하세요~~*<br><br>
@@ -24,7 +24,7 @@ Server Development Labor Union is the first and only server programming club in 
 * [socket.io](https://socket.io/)<br>
 * [socket.io 강의 문서](https://www.zerocho.com/category/NodeJS/post/57edfcf481d46f0015d3f0cd)<br>
 
-### [유니티 올리는 동아리 리포 / Server Development Labor Union Github page for Unity](https://github.com/gghteam/ServerDevelopmentLaborUnity)
+### [유니티 올리는 동아리 리포 / Server Development Labor Union repo for Unity](https://github.com/gghteam/ServerDevelopmentLaborUnity)
 ### [Archive Reposit](https://github.com/gghteam/ServerDevelopmentLaborArchive)
 
 
